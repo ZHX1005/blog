@@ -11,3 +11,11 @@ $db=new db("article");
 for($i=0;$i<100;$i++){
     $db->insert(array("btitle"=>$i,"content"=>"测试","status"=>"测试","cid"=>$i*2));
 }
+
+
+ echo $pagelist->pre(); echo $pagelist->strlist();
+echo "当前页是：". $pagelist->next();echo $pagelist->nowpage();
+echo $pagelist->count(); echo $pagelist->select();
+echo $pagelist->input();echo $pagelist->pres();
+echo $pagelist->nexts();
+?>

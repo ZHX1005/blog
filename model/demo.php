@@ -44,6 +44,10 @@
     .pagelist .pageinput{ 	
 	   width:30px;
     }
+    .pagelist span{ 	
+	   font-size:16px;
+    	color:#666;
+    }
 </style>
 </head>
 <body>
@@ -102,11 +106,7 @@ echo $pagelist->count();  */
 <?php }?>
 </table>
 <div class="pagelist">
-    <?php echo$pagelist->pre(); echo $pagelist->strlist();
-    echo "当前页是：". $pagelist->next();echo $pagelist->nowpage();
-    echo $pagelist->count(); echo $pagelist->select();
-    echo $pagelist->input();echo $pagelist->pres();
-    echo $pagelist->nexts();
+ <?php echo $pagelist->show(1);
     ?>
 </div>
 </div>
