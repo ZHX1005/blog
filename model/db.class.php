@@ -1,7 +1,7 @@
 <?php
 /**
- * 后盾网  http://www.houdunwang.com
- * 2011-6-16 下午01:30:52
+ * 
+ * 
  */
 class db {
 	//数据库连接
@@ -29,7 +29,7 @@ class db {
 			exit ();
 		}
 		$this->db
-			->query ( "SET NAMES 'utf-8'" );
+			->query ( "SET NAMES 'UTF8'" );
 		$this->opt ['field'] = "*";
 		$this->opt ['where'] = $this->opt ['order'] = $this->opt ['limit'] = $this->opt ['group'] = '';
 	}
