@@ -53,13 +53,19 @@ include '../config/config.php';
 include 'db.class.php';
 include 'page.class.php';
 $db=new db("article");
-/*
-for($i=0;$i<100;$i++){
-    $db->insert(array("btitle"=>$i));
-}*/
+//插入
+/* for($i=0;$i<100;$i++){
+    $db->insert(array("btitle"=>$i,"content"=>"测试","status"=>"测试","cid"=>$i*2));
+} */
+//插入
+//$db->insert(array("btitle"=>"houdun","content"=>"123"));
+//查询
+//var_dump($db->select());
+//删除
+//$db->where("bid<2")->delete();
 $total=$db->count();
 //测试篇数(总篇数，每页显示篇数，显示页码数) 
-$pagelist=new page($total,15,8,array("pre"=>"上一页","next"=>"下一页"));
+$pagelist=new page($total,5,8,array("pre"=>"上一页","next"=>"下一页"));
 $result = $db->sql("SELECT * FROM blog_article  {$pagelist->limit()}");
 
 //$pagelist->limit();
@@ -99,7 +105,8 @@ echo $pagelist->count();  */
     <?php echo$pagelist->pre(); echo $pagelist->strlist();
     echo "当前页是：". $pagelist->next();echo $pagelist->nowpage();
     echo $pagelist->count(); echo $pagelist->select();
-    echo $pagelist->input();
+    echo $pagelist->input();echo $pagelist->pres();
+    echo $pagelist->nexts();
     ?>
 </div>
 </div>
