@@ -54,8 +54,8 @@
 <div class="page">
 <?php
 include '../config/config.php';
-include 'db.class.php';
-include 'page.class.php';
+include '../libs/bin/db.class.php';
+include '../libs/bin/page.class.php';
 $db=new db("article");
 //插入
 /* for($i=0;$i<100;$i++){
