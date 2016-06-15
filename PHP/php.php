@@ -29,5 +29,6 @@ if (is_file($runtime_file)){
     require $runtime_file;
 }else {
     include PHP_PATH.'/common/runtime.php';
-    runtime;
+    runtime();
 }
+runtime("end");

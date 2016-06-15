@@ -5,6 +5,7 @@
 * ----------------------------------------------
 * @date: 2016年6月14日 下午4:41:35
 * @author: 张昊翔
+* 编译
 * ==============================================
 **/
 function runtime(){
@@ -16,7 +17,9 @@ function runtime(){
         }
     }
     mkdirs();
-    
+    //框架常规配置项
+    C(require PHP_PATH.'/libs/etc/init.config.php');
+    echo c("SHOW_TIME");
 }
 //创建环境目录
 function mkdirs(){
@@ -34,5 +37,6 @@ function mkdirs(){
     if (!is_dir(CONFIG_PATH))mkdir(CONFIG_PATH,0777);
     if (!is_dir(TEMPLETE_PATH))mkdir(TEMPLETE_PATH,0777);
     if (!is_dir(TPL_PATH))mkdir(TPL_PATH,0777);
-    echo CACHE_DIR;
+    if (!is_dir(MODULE_PATH))mkdir(MODULE_PATH,0777);
+    //echo CACHE_DIR;
 }
