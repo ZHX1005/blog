@@ -18,18 +18,27 @@ class APP{
         //配置自动加载类文件
         spl_autoload_register(array(__CLASS__,"autoload"));
         self::init();
+        if(C("DEBUG")){
+            debug::show();
+        }
     }
     //初始化配置
     static function init(){
-        self::config();       
+        self::config(); 
+        echo C("dbhost");
     }
     //初始化配置文件处理
     static function config(){
-        
+        $config_file = CONFIG_PATH.'/config.php';
+        //echo $config_file;
+        if (is_file($config_file)){
+            C(require $config_file);
+        }
     }
     //自动加载类文件
     static function autoload($classname){
         $classfile = PHP_PATH.'/libs/bin/'.$classname.'.class.php';
+        //echo $classfile;
         loadfile($classfile);
     }
 }

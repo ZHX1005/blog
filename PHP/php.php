@@ -31,4 +31,4 @@ if (is_file($runtime_file)){
     include PHP_PATH.'/common/runtime.php';
     runtime();
 }
-runtime("end");
+run_time("end");

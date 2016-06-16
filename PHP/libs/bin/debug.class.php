@@ -14,11 +14,11 @@ class debug{
         self::$debug[]=$msg;
     }
     function show(){
-        self:$debug[]=runtime("run_time","end");
-        echo "<div style='boder:solid 2px #dcdcdc;'>";
+        self::$debug[]="运行时间：".run_time("start","end")."秒";
+        echo "<div style='border:solid 2px #dcdcdc;width:500px;margin:20px;padding:10px;font-size:12px;'><ul style='list-style:none;padding:0px;margin:0px;'>";
         foreach (self::$debug as $v){
-            echo $v;
+            echo "<li>".$v."</li>";
         }
-        echo"</div>";
+        echo"</ul></div>";
     }
 }

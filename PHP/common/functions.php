@@ -8,6 +8,7 @@
 * 公共函数文件
 * ==============================================
 **/
+header("Content-Type:text/html;Charset=utf-8");
 function error($msg){
     echo "<div style='border:solid 2px #333;
         width:500px;height:100px'>$msg</div>";
@@ -16,12 +17,12 @@ function error($msg){
 //载入文件
 function loadfile($file){
     static $fileArr=array();
-    if (!isset($fileArr[$filename])){
-        if (is_file($file)){
+    if (!isset($fileArr[$file])){
+        if (!is_file($file)){
             $msg="<span style='color:#f00;'>{$file}文件不存在！</span>";
         }else{
             require $file;
-            $fileArr[$file]=ture;
+            $fileArr[$file]=true;
             $msg="<span>文件{$file}载入成功！</span>";
         } 
         call_user_func_array(array("debug","msg"),array($msg));
@@ -29,7 +30,7 @@ function loadfile($file){
 }
 //配置文件处理
 function C($name=null,$value=null){
-    static $confug = array();
+    static $config = array();
     if (is_null($name)){
         return $config;     
     }
