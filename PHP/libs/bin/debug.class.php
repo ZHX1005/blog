@@ -9,11 +9,11 @@
 **/
 class debug{
     static $debug=array();//保存错误信息
-    function msg($msg){
+    static  function msg($msg){
         //显示信息
         self::$debug[]=$msg;
     }
-    function show(){
+    static function show(){
         self::$debug[]="运行时间：".run_time("start","end")."秒";
         echo "<div style='border:solid 2px #dcdcdc;width:500px;margin:20px;padding:10px;font-size:12px;'><ul style='list-style:none;padding:0px;margin:0px;'>";
         foreach (self::$debug as $v){

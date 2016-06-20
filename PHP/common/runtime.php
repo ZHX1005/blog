@@ -19,7 +19,7 @@ function runtime(){
     mkdirs();
     //框架常规配置项
     C(require PHP_PATH.'/libs/etc/init.config.php');
-    echo c("SHOW_TIME");
+    //echo C("SHOW_TIME");
 }
 //创建环境目录
 function mkdirs(){
