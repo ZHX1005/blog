@@ -10,7 +10,9 @@
 class indexControl{
     function index(){
         //echo E_USER_ERROR;
-       // echo __CLASS__."===".__METHOD__;
-        trigger_error("错误。。。",E_USER_ERROR);//与APP.class中set_error_handler函数一起使用
+       //echo __CLASS__."===".__METHOD__;
+        //trigger_error("错误",E_USER_ERROR);//与APP.class中set_error_handler函数一起使用
+       //A("cc");
+        trigger_error("抛出错误");
     }
 }

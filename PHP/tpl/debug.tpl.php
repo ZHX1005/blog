@@ -8,6 +8,7 @@
         #debug{width:880px;border:solid 1px #dcdcdc;margin-top:20px;padding:10px;}
         fieldset{padding:10px;font-size:14px;}
         legend{padding:5px;}
+        p{background-color:#666;font-size:12px;color:#fff;margin-top:10px;padding:3px;}
     </style>
 </head>
 <body>

@@ -19,10 +19,19 @@ class APP{
         spl_autoload_register(array(__CLASS__,"autoload"));
         //注册错误处理函数
         set_error_handler(array(__CLASS__,"error"));
-        //
+        //是否转义
+        define("MAGIC_QUOTES_GPC", get_magic_quotes_gpc()?true:false);
+        //设置时区
+        if (function_exists("date_default_timezone_set")){
+            date_default_timezone_set(C("DATE_TIMEZONE_SET"));//init.config       
+        }
+        //调试开始
+        if (C("DEBUG")){
+            debug::start("app_start");
+        }
         self::init();
         if(C("DEBUG")){
-            debug::show();
+            debug::show("app_start","app_end");
         }
     }
     //初始化配置
@@ -32,15 +41,17 @@ class APP{
         /* self::$module=self::module();
         self::$control=self::control();
         self::$action=self::action(); */
-        define("MODULE", isset($_GET[C("VAR_MODULE")])?$_GET[C("VAR_MODULE")]:C("DEFAULT_MODULE"));
-        $control_file=MODULE_PATH.'/'.self::$module.'/'.self::$control.C("CONTROL_FIX").C("CLASS_FIX").'.php';
+        define("MODULE",isset($_GET[C("VAR_MODULE")])?$_GET[C("VAR_MODULE")]:C("DEFAULT_MODULE")); 
+        define("CONTROL",isset($_GET[C("VAR_CONTROL")])?$_GET[C("VAR_CONTROL")]:C("DEFAULT_CONTROL"));
+        define("ACTION",isset($_GET[C("VAR_ACTION")])?$_GET[C("VAR_ACTION")]:C("DEFAULT_ACTION"));
+        $control_file=MODULE_PATH.'/'.MODULE.'/'.CONTROL.C("CONTROL_FIX").C("CLASS_FIX").'.php';
         //echo $control_file;
-        if (loadfile($control_file)){
-            //echo 123;
-            $control =O(self::$control.C("CONTROL_FIX"));//定义在functions,,实例化对象
-            $action=self::$action;
-            $control->$action();
+        $control =A(CONTROL);//定义在functions,,实例化对象
+        $action=ACTION;
+        if (!method_exists($control, $action)){
+            error("控制器".CONTROL."中的动作".$action."不存在");
         }
+        $control->$action();
     }
     //获得模块
     private static function module(){
@@ -70,6 +81,9 @@ class APP{
     }
     //自动加载类文件
     static function autoload($classname){
+        if (strpos($classname, C("CONTROL_FIX"))>0){
+            error("错误：控制器必须由A()函数创建，或者类没有创建");
+        }
         $classfile = PHP_PATH.'/libs/bin/'.$classname.'.class.php';
         //echo $classfile;
         loadfile($classfile);
@@ -88,9 +102,10 @@ class APP{
             case E_USER_NOTICE;
             case E_USER_WARNING;
             default:
-                $errmsg="NOTICE:[$errno]<strong>$errstr</strong>File:$errfile"."[$errline]";
+                $errmsg="NOTICE:[$errno]<strong>$errstr</strong>File:$errfile"."[$errline]";            
+                notice(func_get_args());
+                //echo $errmsg;
                 break;
-                //notice($errmsg);
         }
               
     }

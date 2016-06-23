@@ -8,10 +8,13 @@
 * ==============================================
 **/
 return array(
+    //系统配置
     "SHOW_TIME"=>1,//显示运行时间
     "DEBUG"=>1,//开启调试模式
+    "NOTECE_SHOW"=>1,//是否开启提示性错误
     "DEBUG_TPL"=>PHP_PATH.'/tpl/debug.tpl.php',//错误异常模板
     "ERROR_MESSAGE"=>"页面出错",//关闭调试模式后显示内容
+    "DATE_TIMEZONE_SET"=>"PRC",//默认时区
     //项目配置项
     "DEFAULT_MODULE"=>"index",
     "DEFAULT_CONTROL"=>"index",

@@ -38,19 +38,54 @@ function error($error){
     include C("DEBUG_TPL");//调用init.config中
     exit();
 }
+//提示性错误
+function notice($e){
+    if (C("DEBUG")&&C("NOTICE_SHOW")){
+        $time=number_format(microtime(TRUE)-debug::start("app_start"),4);
+    }
+    $memory=memory_get_usage();
+    //var_dump($e);
+    $message=$e[1];
+    $file=$e[2];
+    $line=$e[3];
+    $msg=<<<str
+    <h1>NOTICE:$message</h1>
+    <div>
+        <table>
+            <tr><td>time</td><td>memory</td><td>file</td><td>line</td></tr>
+            <tr><td>$time</td><td>$memory</td><td>$file</td><td>$line</td></tr>
+        </table>
+    </div>
+str;
+}
 //生成唯一序列号
 function _md5($var){
     return md5(serialize($var));
 }
 //实例化控制器
 function A($control){
-    //有点就用点拆分控制器
+    //有点表示传递的是模块加控制器的形式，就用点拆分控制器，
     if (strstr($control, '.')){
         $arr=explode('.', $control);
         $module=$arr[0];
         $control=$arr[1];
     }else{
-        $module=MODULE;
+        $module=MODULE;//APP.class初始化配置中
+    }
+    //echo $module."::".$control;
+    static $_control=array();
+    $control=$control.C("CONTROL_FIX");
+    if (isset($_control[$control])){
+        return $_control[$control];
+    }
+    $control_path=MODULE_PATH."/".$module."/".$control.C("CLASS_FIX").'.PHP';
+    //echo $control_path;
+    loadfile($control_path);
+    if (class_exists($control)){
+        $_control[$control]=new $control();
+        return $_control[$control];
+    }else {
+        return false;
     }
 }
 //实例化对象或执行方法
@@ -73,7 +108,7 @@ function O($class,$method=null,$args=array()){
 }
 
 //载入文件
-function loadfile($file){
+function loadfile($file=''){
     static $fileArr=array();
     if (empty($file)){
         return $fileArr;
@@ -83,7 +118,7 @@ function loadfile($file){
         return $fileArr[$filePath];
     }
     if (!is_file($filePath)){
-        error("文件".$file."不存在");
+        error("文件".$file."不存在！");
     }
     require $filePath;
     $fileArr[$filePath]=true;
