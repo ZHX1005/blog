@@ -5,7 +5,7 @@
 * ----------------------------------------------
 * @date: 2016年6月15日 下午1:31:55
 * @author: 张昊翔
-* 项目
+* 项目文件
 * ==============================================
 **/
 //项目处理类
@@ -19,12 +19,16 @@ class APP{
         spl_autoload_register(array(__CLASS__,"autoload"));
         //注册错误处理函数
         set_error_handler(array(__CLASS__,"error"));
+        //注册异常处理函数
+        set_exception_handler(array(__CLASS__,"exception"));
         //是否转义
         define("MAGIC_QUOTES_GPC", get_magic_quotes_gpc()?true:false);
         //设置时区
         if (function_exists("date_default_timezone_set")){
             date_default_timezone_set(C("DATE_TIMEZONE_SET"));//init.config       
         }
+        //载入配置项
+        self::config();
         //调试开始
         if (C("DEBUG")){
             debug::start("app_start");
@@ -36,7 +40,6 @@ class APP{
     }
     //初始化配置
     static function init(){
-        self::config(); 
         //echo C("dbhost");
         /* self::$module=self::module();
         self::$control=self::control();
@@ -52,8 +55,9 @@ class APP{
             error("控制器".CONTROL."中的动作".$action."不存在");
         }
         $control->$action();
+        //call_user_func(array($control,$action));
     }
-    //获得模块
+    /* //获得模块
     private static function module(){
         if (isset($_GET['m'])&&!empty($_GET['m'])){
             return $_GET['m'];    
@@ -70,7 +74,7 @@ class APP{
         if (isset($_GET['a'])&&!empty($_GET['a'])){
             return $_GET['a'];
         }return C("DEFAULT_ACTION");
-    }
+    } */
     //初始化配置文件处理
     static function config(){
         $config_file = CONFIG_PATH.'/config.php';
@@ -106,7 +110,10 @@ class APP{
                 notice(func_get_args());
                 //echo $errmsg;
                 break;
-        }
-              
+        }            
+    }
+    //异常处理
+    static function exception($e){
+        error($e->show());
     }
  }

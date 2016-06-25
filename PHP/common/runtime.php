@@ -20,6 +20,38 @@ function runtime(){
     //框架常规配置项
     C(require PHP_PATH.'/libs/etc/init.config.php');
     //echo C("SHOW_TIME");
+    $data='';
+    //格式化内容 去空白定义在function中
+    foreach ($files as $V){
+        $data.=del_space($v);
+    }
+    $data="<?php".$data."C(require PHP_PATH.'/libs/etc/init.config.php');"."?>";
+    file_put_contents(TEMP_PATH.'/runtime.php', $data);
+    index_control();
+}
+//创建友好测试页面
+function index_control(){
+   $index_dir=MODULE_PATH.'/index';
+   $index_file=$index_dir.'/index'.C("CONTROL_FIX").C("CLASS_FIX").".php";
+   //echo $index_dir;
+   if (!is_dir($index_dir)){
+       mkdir($index_dir,0777);
+   }
+   if (!is_file($index_file)){
+       $data=<<<str
+       <?php
+           class indexControl extends Control{
+                function index(){
+                    echo"<div style='border:1px solid #dcdcdc;width:300px;height:40px;padding:30px 50px 10px;'>
+                         <h1 style='font-size:12px;color:#F00;'>
+                                                                        欢迎使用素梅好翔框架SMHXPHP
+                         </h1>
+                    </div>";
+                }
+           }     
+str;
+   file_put_contents($index_file, $data);
+   }
 }
 //创建环境目录
 function mkdirs(){

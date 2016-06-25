@@ -30,7 +30,9 @@ function error($error){
            $e['info']=$info;
            //var_dump($e);
         }else{
+            //echo 222;
             $e=$error;
+           // var_dump($e);
         }
     }else{   //不开启debug模式
         $e['message']=C("ERROR_MESSAGE");
@@ -41,22 +43,23 @@ function error($error){
 //提示性错误
 function notice($e){
     if (C("DEBUG")&&C("NOTICE_SHOW")){
-        $time=number_format(microtime(TRUE)-debug::start("app_start"),4);
-    }
+        $time=number_format((microtime(TRUE)-debug::$runtime['app_start']),4);
+    
     $memory=memory_get_usage();
     //var_dump($e);
     $message=$e[1];
     $file=$e[2];
     $line=$e[3];
-    $msg=<<<str
-    <h1>NOTICE:$message</h1>
+    $msg="
+    <h1 style='font-size:13px;background-color:#333;height:20px;line-height:1.8em;padding:5px;margin-top:20px;color:#fff;width:895px;'>NOTICE:$message</h1>
     <div>
-        <table>
+        <table style='border:solid 1px #dcdcdc;width:900px;'>
             <tr><td>time</td><td>memory</td><td>file</td><td>line</td></tr>
             <tr><td>$time</td><td>$memory</td><td>$file</td><td>$line</td></tr>
         </table>
-    </div>
-str;
+    </div>";
+    echo $msg;
+    }
 }
 //生成唯一序列号
 function _md5($var){
@@ -167,8 +170,23 @@ function C($name=null,$value=null){
     if(is_array($name)){  
         $config=array_merge($config,array_change_key_case($name));
         return true;
-    }
+    }   
 }
+//格式化内容 去空白
+function del_space($file_name){
+    //载入核心文件
+    $data=file_get_contents($file_name);
+    //截取起始标记：<?php和结束标记:？>
+    $data=substr($data, 0,5)=="<?php"?substr($data, 5):$data;
+    $data=substr($data, -2)=="?>"?substr($data, 0,-2):$data;
+    //删除多行注释和空格
+    //多行注释$preg_arr=array('/\/\*.*?\*\/\s*/is');
+    //$preg_arr=array('/\/\*.*?\*\/\s*/is','/\/\/.*?[\r\n]/is');//多行注释加单行注释
+    $preg_arr=array('/\/\*.*?\*\/\s*/is','/\/\/.*?[\r\n]/is','/(?!\w)\s*?(?!\w)/is');//多行注释加单行注释加空格
+    return preg_replace($preg_arr, '', $data);
+    
+}
+
 
 
 

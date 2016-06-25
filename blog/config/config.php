@@ -10,4 +10,6 @@
 return array(
     "dbhost"=>211,
     "user"=>'hsd',
+    "debug"=>1,
+    "NOTICE_SHOW"=>1,
 );
