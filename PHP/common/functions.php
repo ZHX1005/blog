@@ -177,7 +177,7 @@ function del_space($file_name){
     //载入核心文件
     $data=file_get_contents($file_name);
     //截取起始标记：<?php和结束标记:？>
-    $data=substr($data, 0,5)=="<?php"?substr($data, 5):$data;
+    $data=substr($data,0,5)=="<?php"?substr($data, 5):$data;
     $data=substr($data, -2)=="?>"?substr($data, 0,-2):$data;
     //删除多行注释和空格
     //多行注释$preg_arr=array('/\/\*.*?\*\/\s*/is');

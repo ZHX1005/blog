@@ -37,6 +37,8 @@ class APP{
         if(C("DEBUG")){
             debug::show("app_start","app_end");
         }
+        //错误日志存储
+        log::save();
     }
     //初始化配置
     static function init(){
@@ -100,13 +102,17 @@ class APP{
             case E_ERROR;
             case E_USER_ERROR;
                 $errmsg="ERROR:[$errno]<strong>$errstr</strong>File:$errfile"."[$errline]";
+                //直接写入错误进日志文件
+                log::write("[$errno]<strong>$errstr</strong>File:$errfile($errline)");
                 error($errmsg);
                 break;
             case E_NOTICE;
             case E_USER_NOTICE;
             case E_USER_WARNING;
             default:
-                $errmsg="NOTICE:[$errno]<strong>$errstr</strong>File:$errfile"."[$errline]";            
+                $errmsg="NOTICE:[$errno]<strong>$errstr</strong>File:$errfile"."[$errline]";
+                //错误日志文件
+                log::set("[$errno]<strong>$errstr</strong>File:$errfile($errline)");
                 notice(func_get_args());
                 //echo $errmsg;
                 break;

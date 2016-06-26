@@ -30,6 +30,8 @@ class exceptionHD extends Exception{
             $info.=$file."\t".$class.$type.$v['function']."<br/>";          
         }
         $error['info']=$info;
+        //异常
+        log::write($error['message']);
         return $error;
     }
 }
