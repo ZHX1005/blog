@@ -15,6 +15,10 @@ return array(
     "DEBUG_TPL"=>PHP_PATH.'/tpl/debug.tpl.php',//错误异常模板
     "ERROR_MESSAGE"=>"页面出错",//关闭调试模式后显示内容
     "DATE_TIMEZONE_SET"=>"PRC",//默认时区
+    //PATHINFO
+    "PATHINFO_DLI"=>"/",//PATHINFO分隔符
+    "PATHINFO_VAR"=>"q",//兼容模式get变量
+    "PATHINFO_HTML"=>".html",//伪静态
     //日志处理
     "LOG_START"=>1,//日志是否开启
     "LOG_TYPE"=>array("SQL","NOTICE","ERROR"),//日志处理类型
