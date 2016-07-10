@@ -10,11 +10,23 @@
 return array(
     //系统配置
     "SHOW_TIME"=>1,//显示运行时间
+    "FONT"=>PHP_PATH.'/date/font/heiti.ttf',//字体
     "DEBUG"=>1,//开启调试模式
     "NOTECE_SHOW"=>1,//是否开启提示性错误
     "DEBUG_TPL"=>PHP_PATH.'/tpl/debug.tpl.php',//错误异常模板
     "ERROR_MESSAGE"=>"页面出错",//关闭调试模式后显示内容
     "DATE_TIMEZONE_SET"=>"PRC",//默认时区
+    
+    //验证码
+    "CODE_STR"=>"1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM",//验证码字符串
+    "CODE_WIDTH"=>80,//验证码宽度
+    "CODE_HEIGHT"=>25,//验证码高度
+    "CODE_BG_COLOR"=>"#DCDCDC",//验证码背景颜色
+    "CODE_LEN"=>4,//验证码长度
+    "CODE_FONT_SIZE"=>18,//字体大小
+    "CODE_FONT_COLOR"=>"000000",//文字颜色
+    //session
+    "CODE"=>"code",//session变量
     //PATHINFO
     "PATHINFO_DLI"=>"/",//PATHINFO分隔符
     "PATHINFO_VAR"=>"q",//兼容模式get变量

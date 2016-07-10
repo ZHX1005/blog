@@ -46,9 +46,11 @@ class APP{
         /* self::$module=self::module();
         self::$control=self::control();
         self::$action=self::action(); */
-        define("MODULE",isset($_GET[C("VAR_MODULE")])?$_GET[C("VAR_MODULE")]:C("DEFAULT_MODULE")); 
+       /*  define("MODULE",isset($_GET[C("VAR_MODULE")])?$_GET[C("VAR_MODULE")]:C("DEFAULT_MODULE")); 
         define("CONTROL",isset($_GET[C("VAR_CONTROL")])?$_GET[C("VAR_CONTROL")]:C("DEFAULT_CONTROL"));
-        define("ACTION",isset($_GET[C("VAR_ACTION")])?$_GET[C("VAR_ACTION")]:C("DEFAULT_ACTION"));
+        define("ACTION",isset($_GET[C("VAR_ACTION")])?$_GET[C("VAR_ACTION")]:C("DEFAULT_ACTION")); */
+        //调用路由器
+        url::parseUrl();
         $control_file=MODULE_PATH.'/'.MODULE.'/'.CONTROL.C("CONTROL_FIX").C("CLASS_FIX").'.php';
         //echo $control_file;
         $control =A(CONTROL);//定义在functions,,实例化对象

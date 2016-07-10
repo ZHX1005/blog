@@ -24,8 +24,17 @@ final class url{
                $get['a']=$info[0];
                array_shift($info);
            }
+           $count=count($info);
+           for ($i=0;$i<$count;$i+=2){
+               $get[$info[$i]]=$info[$i+1];
+           }
+           $_GET=$get;
         }
         //echo "NO PATHINFO";
+        //var_dump($_GET);
+        define("MODULE", isset($_GET['m'])?$_GET['m']:C("DEFAULT_MODULE"));
+        define("CONTROL", isset($_GET['c'])?$_GET['c']:C("DEFAULT_CONTROL"));
+        define("ACTION", isset($_GET['a'])?$_GET['a']:C("DEFAULT_ACTION"));
     }
     //解析pathinfo
     static function Pathinfo(){
