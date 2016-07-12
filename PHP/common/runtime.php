@@ -70,5 +70,6 @@ function mkdirs(){
     if (!is_dir(TEMPLETE_PATH))mkdir(TEMPLETE_PATH,0777);
     if (!is_dir(TPL_PATH))mkdir(TPL_PATH,0777);
     if (!is_dir(MODULE_PATH))mkdir(MODULE_PATH,0777);
+    if (!is_dir(UPLOAD_PATH))mkdir(UPLOAD_PATH,0777);
     //echo CACHE_DIR;
 }

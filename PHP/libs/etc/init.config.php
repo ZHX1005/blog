@@ -25,8 +25,16 @@ return array(
     "WATER_TEXT"=>"水印文字",//水印文字
     "WATER_TEXT_COLOR"=>"#000000",//水印文字颜色
     "WATER_TEXT_SIZE"=>"13",//水印文字大小
+    "WATER_TEXT_FONT"=>PHP_PATH.'/data/font/heiti.ttf',//水印字体
     //缩略图处理
-    "THUMB_ON"=>
+    "THUMB_ON"=>1,//是否开启缩略图
+    "THUMB_PREFIX"=>"thumb_",//缩略图前缀
+    "THUMB_ENDFIX"=>"_thumb",//缩略图后缀
+    "THUMB_TYPE"=>"1",//生成缩略图的方式
+    //1 ：固定宽度，高度自增 2：固定高度，宽度自增 3：固定宽度，高度自增4：固定高度，宽度裁剪5：缩放最大边
+    "THUMB_WIDTH"=>250,//缩略图宽度
+    "THUMB_HEIGHT"=>250,//缩略图高度
+    "THUMB_PATH"=>'',//缩略图保存目录
     //验证码
     "CODE_STR"=>"1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM",//验证码字符串
     "CODE_WIDTH"=>80,//验证码宽度

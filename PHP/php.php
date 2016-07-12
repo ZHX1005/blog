@@ -23,7 +23,7 @@ define("PHP_PATH",dirname(__FILE__));
 //临时目录
 define("TEMP_PATH",APP_PATH.'/temp');
 //加载编译文件
-$runtime_file=TEMP_PATH.'/runtime11.php';
+$runtime_file=TEMP_PATH.'/runtime.php';
 //判断编译文件是否存在，存在加载，不存在从配置文件里面生成
 if (is_file($runtime_file)){
     require $runtime_file;
