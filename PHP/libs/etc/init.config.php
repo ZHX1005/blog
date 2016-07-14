@@ -18,6 +18,7 @@ return array(
     "DATE_TIMEZONE_SET"=>"PRC",//默认时区
     //图像水印处理
     "WATER_ON"=>1,//水印是否开启
+    "WATER_TYPE"=>1,//1为图片水印，0为文字水印
     "WATER_IMG"=>PHP_PATH.'/data/water/water.png',//水印图片
     "WATER_POS"=>9,//水印位置
     "WATER_PCT"=>60,//水印透明度
@@ -34,7 +35,7 @@ return array(
     //1 ：固定宽度，高度自增 2：固定高度，宽度自增 3：固定宽度，高度自增4：固定高度，宽度裁剪5：缩放最大边
     "THUMB_WIDTH"=>250,//缩略图宽度
     "THUMB_HEIGHT"=>250,//缩略图高度
-    "THUMB_PATH"=>'',//缩略图保存目录
+    "THUMB_PATH"=>UPLOAD_PATH.'/img/'.date("ymd"),//缩略图保存目录
     //验证码
     "CODE_STR"=>"1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM",//验证码字符串
     "CODE_WIDTH"=>80,//验证码宽度

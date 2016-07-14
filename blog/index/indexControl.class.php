@@ -6,13 +6,14 @@
                     //var_dump($_SERVER);
                    //url::parseUrl();
                    //echo C("FONT");
-                  $code=new code();
+                  /* $code=new code();
                    echo $code->getstr();  
-                   echo $code->getimage(); 
+                   echo $code->getimage();  */
                    //echo $code->create_code();
                   // echo $code->create_font();
-                   
-                   //$ValidateCode=new ValidateCode();
-                   //echo $ValidateCode->doimg();
+               $img=new images();
+               $img->thumb("a.png");
+              // $img=new images();
+               //$img->watermark("a.png");
                 }
            }     
