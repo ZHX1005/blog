@@ -5,6 +5,7 @@
 * ----------------------------------------------
 * @date: 2016年6月15日 下午2:30:57
 * @author: 张昊翔
+* 系统配置文件
 * ==============================================
 **/
 return array(
@@ -16,11 +17,15 @@ return array(
     "DEBUG_TPL"=>PHP_PATH.'/tpl/debug.tpl.php',//错误异常模板
     "ERROR_MESSAGE"=>"页面出错",//关闭调试模式后显示内容
     "DATE_TIMEZONE_SET"=>"PRC",//默认时区
+    //文件上传
+    "UPLOAD_EXT_SIZE"=>array("txt"=>"","jpg"=>"","jpeg"=>"","gif"=>"","doc"=>"","rar"=>"","bmp"=>""),//文件上传类型及大小
+    "UPLOAD_PATH"=>UPLOAD_PATH.'/user/'.date("Ymd"),//文件上传保存路径
+    "UPLOAD_PATH_IMG"=>UPLOAD_PATH.'/img/'.date("Ymd"),//图片上传路径
     //图像水印处理
     "WATER_ON"=>1,//水印是否开启
     "WATER_TYPE"=>1,//1为图片水印，0为文字水印
     "WATER_IMG"=>PHP_PATH.'/data/water/water.png',//水印图片
-    "WATER_POS"=>9,//水印位置
+    "WATER_POS"=>5,//水印位置
     "WATER_PCT"=>60,//水印透明度
     "WATER_QUALITY"=>80,//水印压缩比
     "WATER_TEXT"=>"水印文字",//水印文字
@@ -35,7 +40,7 @@ return array(
     //1 ：固定宽度，高度自增 2：固定高度，宽度自增 3：固定宽度，高度自增4：固定高度，宽度裁剪5：缩放最大边
     "THUMB_WIDTH"=>250,//缩略图宽度
     "THUMB_HEIGHT"=>250,//缩略图高度
-    "THUMB_PATH"=>UPLOAD_PATH.'/img/'.date("ymd"),//缩略图保存目录
+    "THUMB_PATH"=>UPLOAD_PATH.'/img/'.date("Ymd"),//缩略图保存目录
     //验证码
     "CODE_STR"=>"1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM",//验证码字符串
     "CODE_WIDTH"=>80,//验证码宽度

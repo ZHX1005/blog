@@ -5,7 +5,7 @@
 * ----------------------------------------------
 * @date: 2016年6月26日 下午3:16:53
 * @author: 张昊翔
-* 获得文件目录
+* 文件操作
 * ==============================================
 **/
 final class dir{
@@ -73,6 +73,41 @@ final class dir{
             is_dir($v)?self::del($v):unlink($v);
         }
         return rmdir($dirPath);
+    }
+    //支持层级的目录结构创建
+    static function create($dirname,$auth="0777"){
+        $dirPath=self::dir_path($dirname);
+        if (is_dir($dirPath))return true;
+        $dirArr=explode("/", $dirPath);
+        //var_dump($dirArr);
+        //创建目录
+        $dir='';
+        foreach ($dirArr as $v){
+            $dir.=$v.'/';
+            //echo $dir."</br>";
+            if (is_dir($dir))continue;
+            mkdir($dir,$auth);
+        }
+        return is_dir($dirPath);        
+    }
+    //复制目录内容
+    static function copy($oldDir,$newDir){
+        $oldDir=self::dir_path($oldDir);
+        $newDir=self::dir_path($newDir);
+        if (!is_dir($oldDir))error("复制失败：".$oldDir."目录不存在");
+        if (!is_dir($newDir))self::create($newDir);
+        foreach (glob($oldDir."*") as $v){
+            $toFile=$newDir.basename($v);
+            //echo $v."===>".$toFile."</br>";
+            if (is_file($toFile))continue;
+            if (is_dir($v)){
+                self::copy($v, $toFile);               
+            }else {
+                copy($v, $toFile);
+                chmod($toFile, "0777");
+            }
+        }
+        return true;
     }
 }
 

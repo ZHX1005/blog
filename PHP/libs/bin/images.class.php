@@ -5,6 +5,7 @@
 * ----------------------------------------------
 * @date: 2016年7月12日 下午3:50:36
 * @author: 张昊翔
+* 图像处理类
 * ==============================================
 **/
 class images{
@@ -171,9 +172,9 @@ class images{
         $thumbPath=C("THUMB_PATH");
         dir::create($thumbPath);
         $info=pathinfo($img);
-        $outfile=$outfile?$outfile:$this->thumb_prefix.$info['filename'].$this->thumb_endfix.".".$info['extension'];
+        $outfile=$outfile?$outfile:$this->thumb_prefix.$info['filename'].$this->thumb_endfix.".".$info['extension'];       
         $outfile=$thumbPath.'/'.$outfile;
-        //echo $outfile;
+       // echo $outfile;
         $func="image".substr($img_type, 1);
         $func($res_thumb,$outfile);
         if (isset($res_thumb)) imagedestroy($res_thumb);
@@ -262,7 +263,7 @@ class images{
                  break;
              case 5:
                  $x=($img_w-$w_w)/2;
-                 $Y=($img_h-$w_h)/2;
+                 $y=($img_h-$w_h)/2;
                  break;
              case 6:
                  $x=$img_w-$w_w;
