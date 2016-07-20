@@ -21,6 +21,8 @@ return array(
     "UPLOAD_EXT_SIZE"=>array("txt"=>"","jpg"=>"","jpeg"=>"","gif"=>"","doc"=>"","rar"=>"","bmp"=>""),//文件上传类型及大小
     "UPLOAD_PATH"=>UPLOAD_PATH.'/user/'.date("Ymd"),//文件上传保存路径
     "UPLOAD_PATH_IMG"=>UPLOAD_PATH.'/img/'.date("Ymd"),//图片上传路径
+    //"UPLOAD_THUMB_ON"=>1,//是否对上传文件开启缩略图
+    //"UPLOAD_WATERMARK_ON"=>1,//对上传文件是否加水印
     //图像水印处理
     "WATER_ON"=>1,//水印是否开启
     "WATER_TYPE"=>1,//1为图片水印，0为文字水印
